@@ -1,0 +1,65 @@
+<ion-card class="perfil-card" color="light" *ngIf="usuario">
+  <ion-card-content class="perfil-content">
+    <div class="avatar-wrapper" style="position: relative; display: inline-block;">
+      <ion-avatar class="perfil-avatar">
+        <img [src]="usuario.fotoUrl" alt="Avatar del usuario"
+             (error)="onImageError($event)" />
+      </ion-avatar>
+      <ion-button
+        size="small"
+        fill="solid"
+        color="secondary"
+        class="cambiar-foto-btn"
+        (click)="seleccionarArchivo()"
+        style="position: absolute; bottom: 0; right: 0; border-radius: 50%; padding: 4px;"
+      >
+        <img class="img_boton" src="assets/images/editar_icono.png" alt="Imagen Editar">
+      </ion-button>
+      <input type="file" accept="image/*" #fileInput hidden (change)="cambiarFoto($event)" />
+    </div>
+    <ion-text>
+      <h2 class="perfil-nombre">{{ usuario.nombre }}</h2>
+    </ion-text>
+    <div class="perfil-datos">
+      <ion-text>
+        <p>
+          <strong>Fecha de nacimiento:</strong>
+          <span *ngIf="!editarFecha">{{ usuario.fechaNacimiento || 'No registrada' }}</span>
+          <ion-input
+            *ngIf="editarFecha"
+            [(ngModel)]="usuario.fechaNacimiento"
+            type="date"
+            style="width: auto;"
+          ></ion-input>
+        </p>
+      </ion-text>
+    </div>
+    <div class="perfil-datos">
+      <ion-text>
+        <p>
+          <strong>Email:</strong>
+          <span *ngIf="!editarEmail">{{ usuario.correoElectronico || 'No registrado' }}</span>
+          <ion-input
+            *ngIf="editarEmail"
+            [(ngModel)]="usuario.correoElectronico"
+            type="email"
+            style="width: auto;"
+          ></ion-input>
+        </p>
+      </ion-text>
+      <img
+        src="../../../assets/images/lapiz.webp"
+        class="editar-icono"
+        alt="Editar"
+        (click)="toggleEditar('correoElectronico')"
+        style="cursor: pointer;"
+      />
+      <ion-button *ngIf="editarEmail" size="small" (click)="guardarCampo('correoElectronico')">
+        Guardar
+      </ion-button>
+    </div>
+
+    <ion-button class="perfil-boton" (click)="irAInventario()">Ver Inventario</ion-button>
+
+  </ion-card-content>
+</ion-card>

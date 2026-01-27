@@ -1,0 +1,56 @@
+<ion-card *ngIf="receta" class="receta-card" (click)="goToReceta()">
+  <div class="receta-container">
+    <div class="receta-imagen-container">
+      <img
+        class="imagen_receta"
+        [src]="receta.fotoUrl || '../../../assets/images/receta.png'"
+        [alt]="receta.titulo || 'Receta'"
+        (error)="onImageError($event)"
+      />
+    </div>
+
+    <div class="receta-info">
+      <p class="receta-titulo">{{ receta.titulo }}</p>
+      <p><strong>Tiempo de preparación:</strong> {{ receta.tiempoPreparacion }} min</p>
+      <div class="receta-descripcion">{{ receta.descripcion }}</div>
+      <div class="receta-tutorial">{{ receta.tutorial }}</div>
+      <p><strong>Guardados:</strong> {{ receta.numFavoritos }}</p>
+
+      <div class="receta-acciones">
+
+        <ion-button
+          class="boton"
+          [color]="receta.yaGuardada ? 'success' : '#217A43'"
+          (click)="toggleFavorito($event)">
+          {{ receta.yaGuardada ? 'Guardado' : 'Guardar' }}
+        </ion-button>
+
+        <ion-button
+          class="boton"
+          [color]="receta.enCarrito ? 'warning' : '#217A43'"
+          (click)="toggleCarrito($event, receta)">
+          {{ receta.enCarrito ? 'En carrito' : 'Añadir al carrito' }}
+        </ion-button>
+
+        <div class="opciones-receta">
+          <ion-button
+            class="boton-edel"
+            (click)="abrirModalEditar($event)"
+          >
+            <ion-icon name="create-outline" slot="center"></ion-icon>
+            Editar
+          </ion-button>
+
+          <ion-button
+            class="boton-edel"
+            (click)="eliminarReceta($event)"
+          >
+            <ion-icon name="trash-outline" slot="center"></ion-icon>
+            Eliminar
+          </ion-button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ion-card>

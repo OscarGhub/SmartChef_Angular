@@ -1,0 +1,16 @@
+<ion-toolbar style="padding: 0 16px;">
+  <ion-buttons slot="start">
+    <ion-button fill="clear" (click)="goToPerfil()" class="avatar-button">
+      <ion-avatar>
+        <img
+          [src]="fotoPerfilUrl"
+          alt="Avatar"
+          (error)="onImageError()"
+          style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"
+        />
+      </ion-avatar>
+    </ion-button>
+  </ion-buttons>
+
+  <img slot="end" src="../../../assets/images/logo.png" alt="Logo" style="height: 100px;" />
+</ion-toolbar>

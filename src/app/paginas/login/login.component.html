@@ -1,0 +1,19 @@
+<ion-content class="ion-padding login-container">
+  <div class="login-imagen-container">
+    <img src="../../../assets/images/logo.png" alt="Logo" />
+  </div>
+
+  <ion-item>
+    <ion-label position="floating">Correo Electrónico</ion-label>
+    <ion-input type="email" [(ngModel)]="correoElectronico"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input type="password" [(ngModel)]="contrasena"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" class="login-boton" (click)="login()">
+    Iniciar Sesión
+  </ion-button>
+</ion-content>

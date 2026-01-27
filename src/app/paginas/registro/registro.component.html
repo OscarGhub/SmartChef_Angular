@@ -1,0 +1,47 @@
+<ion-content class="ion-padding registro-container">
+
+  <div class="registro-imagen-container">
+    <img src="../../../assets/images/logo.png" alt="Logo" />
+  </div>
+
+  <ion-item>
+    <ion-label position="floating" for="nombre">Nombre de usuario</ion-label>
+    <ion-input id="nombre" type="text" [(ngModel)]="nuevoUsuario.nombre"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" for="correo_electronico">Email</ion-label>
+    <ion-input id="correo_electronico" type="email" [(ngModel)]="nuevoUsuario.correoElectronico"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" for="contrasena">Contraseña</ion-label>
+    <ion-input id="contrasena" type="password" [(ngModel)]="nuevoUsuario.contrasena"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" for="confirmar_contrasena">Confirmar contraseña</ion-label>
+    <ion-input id="confirmar_contrasena" type="password" [(ngModel)]="confirmar_contrasena"></ion-input>
+  </ion-item>
+
+  <ion-label position="floating" for="fecha_nacimiento">Fecha de nacimiento</ion-label>
+
+  <ion-item>
+    <ion-datetime
+      id="fecha_nacimiento"
+      presentation="date"
+      locale="es-ES"
+      [(ngModel)]="nuevoUsuario.fechaNacimiento"
+      [max]="getFechaMaxima()">
+    </ion-datetime>
+  </ion-item>
+
+  <ion-text color="medium" *ngIf="nuevoUsuario.fechaNacimiento">
+    <p style="margin-left: 16px;">Fecha seleccionada: {{ getFechaFormateada(nuevoUsuario.fechaNacimiento) }}</p>
+  </ion-text>
+
+  <ion-button expand="block" class="registro-boton" (click)="agregarUsuario()">
+    Registrarse
+  </ion-button>
+
+</ion-content>

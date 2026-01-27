@@ -1,0 +1,26 @@
+<ion-header>
+  <app-cabecera></app-cabecera>
+</ion-header>
+
+<ion-content>
+  <ion-toolbar>
+    <div class="titulo-img">
+      <img src="./assets/images/inventario_logo.png" alt="Inventario Logo">
+    </div>
+
+    <div class="contenido-centrado">
+      <app-tarjeta-inventario
+        *ngIf="usuario?.id !== undefined"
+        [usuarioId]="usuario?.id">
+      </app-tarjeta-inventario>
+
+      <p *ngIf="!usuario || usuario?.id === undefined">
+        Cargando inventario...
+      </p>
+    </div>
+  </ion-toolbar>
+</ion-content>
+
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar class="header-toolbar-inventario">
+    <ion-title>Añadir Ingrediente</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancelar()" color="light">Cancelar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding formulario-background-inventario">
+  <form #ingredienteForm="ngForm" (ngSubmit)="guardarIngrediente(ingredienteForm)">
+
+    <ion-list class="input-group-inventario">
+
+      <ion-item class="custom-select-item">
+        <ion-label position="stacked">Ingrediente a añadir</ion-label>
+        <ion-select
+          interface="popover"
+          placeholder="Selecciona un ingrediente..."
+          [(ngModel)]="nuevoItem.idIngrediente"
+          name="idIngrediente"
+          required
+        >
+          <ion-select-option *ngFor="let ingrediente of ingredientesDisponibles" [value]="ingrediente.id">
+            {{ ingrediente.nombre }} ({{ ingrediente.unidadMedida }})
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item class="custom-input-item-inventario">
+        <ion-label position="floating">Cantidad</ion-label>
+        <ion-input
+          type="number"
+          inputmode="decimal"
+          [(ngModel)]="nuevoItem.cantidad"
+          name="cantidad"
+          min="0.1"
+          required>
+        </ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-button
+      expand="block"
+      type="submit"
+      class="ion-margin-top guardar-button-inventario"
+      [disabled]="ingredienteForm.invalid">
+      Añadir al Inventario
+    </ion-button>
+  </form>
+</ion-content>

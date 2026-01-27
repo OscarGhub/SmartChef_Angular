@@ -1,0 +1,45 @@
+<ion-header>
+  <app-cabecera></app-cabecera>
+</ion-header>
+
+<ion-content>
+
+  <div class="box-pref-sb">
+
+    <ion-select
+      class="select-preferencias"
+      placeholder="Filtro"
+      selectedText="Filtro"
+      [multiple]="true"
+      interface="popover"
+      okText="Aceptar"
+      cancelText="Cancelar"
+      (ionChange)="filtrar($event.detail.value)">
+      <ion-select-option *ngFor="let p of preferencias" [value]="p.id">
+        {{ p.nombre }}
+      </ion-select-option>
+    </ion-select>
+
+    <app-search-bar (searchChange)="onSearch($event)"></app-search-bar>
+
+    <button class="btn-in-receta" (click)="abrirModalInsertar()">
+      <img style="width: 40%; height: 60%" src="assets/images/btn_mas_sinfondo.png" alt="Mas">
+    </button>
+
+  </div>
+
+  <div class="titulo-img">
+    <img src="./assets/images/explorar_logo.png" alt="Explorar">
+  </div>
+
+  <div class="tarjetas">
+    <ng-container *ngFor="let receta of recetasFiltradas">
+      <app-tarjeta-receta [receta]="receta"></app-tarjeta-receta>
+    </ng-container>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Insertar Receta</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancelar()">Cancelar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form #recetaForm="ngForm" (ngSubmit)="guardarReceta(recetaForm)">
+
+    <ion-item>
+      <ion-label position="floating">Título</ion-label>
+      <ion-input type="text" [(ngModel)]="nuevaReceta.titulo" name="titulo" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea [(ngModel)]="nuevaReceta.descripcion" name="descripcion" required></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Tiempo de preparación (min)</ion-label>
+      <ion-input type="number" [(ngModel)]="nuevaReceta.tiempoPreparacion" name="tiempoPreparacion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Pasos (uno por línea)</ion-label>
+      <ion-textarea [(ngModel)]="nuevaReceta.pasos" name="pasos" required></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Imagen (URL)</ion-label>
+      <ion-textarea [(ngModel)]="nuevaReceta.img" name="fotoUrl" required></ion-textarea>
+    </ion-item>
+
+    <ion-button
+      expand="block"
+      type="submit"
+      class="ion-margin-top"
+      [disabled]="recetaForm.invalid">
+      Guardar Receta
+    </ion-button>
+  </form>
+</ion-content>

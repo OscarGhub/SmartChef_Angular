@@ -1,0 +1,35 @@
+<ion-header>
+  <app-cabecera></app-cabecera>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="center-container">
+
+    <div *ngIf="cargando">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Cargando tus recetas guardadas...</p>
+    </div>
+
+    <ng-container *ngIf="!cargando && recetasGuardadas.length > 0">
+      <div class="titulo-img">
+        <img src="./assets/images/guardados_logo.png">
+      </div>
+
+      <app-tarjeta-receta
+        *ngFor="let receta of recetasGuardadas"
+        [receta]="receta">
+      </app-tarjeta-receta>
+    </ng-container>
+
+    <div *ngIf="!cargando && recetasGuardadas.length === 0">
+      <div class="titulo-img">
+        <img src="./assets/images/no_guardados.png">
+      </div>
+    </div>
+
+  </div>
+</ion-content>
+
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

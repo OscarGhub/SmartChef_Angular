@@ -1,0 +1,41 @@
+<ion-card class="tarjeta-carrito-container-principal">
+
+  <ion-card-content>
+    <div *ngIf="cargando" class="ion-text-center ion-padding">
+      <ion-spinner name="crescent"></ion-spinner>
+      <p>Cargando ingredientes...</p>
+    </div>
+
+    <div *ngIf="!cargando && listaCompraIngredientes.length === 0" class="empty-state">
+      <ion-text>
+        <p style="color: white">Tu carrito está vacío.</p>
+      </ion-text>
+    </div>
+
+    <div class="lista-contenedor" *ngIf="!cargando && listaCompraIngredientes.length > 0">
+
+      <ion-card *ngFor="let item of listaCompraIngredientes" class="producto-card">
+        <div class="producto-container">
+
+          <div class="imagen-container">
+            <ion-img
+              [src]="item.ingrediente.imagenUrl"
+              [alt]="'Imagen de ' + item.ingrediente.nombre"
+              class="imagen-ingrediente"
+            ></ion-img>
+          </div>
+
+          <div class="producto-info">
+            <p class="producto-nombre">{{ item.ingrediente.nombre }}</p>
+            <p class="producto-descripcion">
+              {{ item.ingrediente.descripcion }} - Cantidad:
+              <strong>{{ item.cantidad }}</strong> {{ item.ingrediente.unidadMedida }}
+            </p>
+          </div>
+
+        </div>
+      </ion-card>
+
+    </div>
+  </ion-card-content>
+</ion-card>

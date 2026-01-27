@@ -1,0 +1,21 @@
+<ion-header>
+  <app-cabecera></app-cabecera>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="center-container">
+
+    <app-tarjeta-receta-extendida
+      *ngIf="receta"
+      [receta]="receta">
+    </app-tarjeta-receta-extendida>
+
+    <div *ngIf="!receta" class="loading-message">
+      Cargando receta...
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <app-footer></app-footer>
+</ion-footer>

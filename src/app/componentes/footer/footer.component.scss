@@ -1,0 +1,24 @@
+.img_boton {
+  height: 50px; width: 50px;
+}
+
+.toolbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 0 auto;
+  max-width: 400px;
+  width: 100%;
+}
+
+.toolbar-button {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  --padding-start: 0;
+  --padding-end: 0;
+  height: 60px;
+  --background: transparent;
+}

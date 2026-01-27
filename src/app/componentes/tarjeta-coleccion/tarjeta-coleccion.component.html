@@ -1,0 +1,26 @@
+<div class="contenedor">
+
+  <ion-button class="boton" (click)="abrirModalInsertar()">
+    Crear Nueva Colección
+  </ion-button>
+
+
+  <div class="lista-colecciones">
+
+    <ion-card
+      class="coleccion-card"
+      *ngFor="let coleccion of colecciones"
+      (click)="goToColeccion(coleccion.id)">
+
+      <div class="coleccion-container">
+
+        <div class="coleccion-info">
+          <h2 class="coleccion-titulo">{{ coleccion.nombre }}</h2>
+          <img class="img" src="assets/images/flecha.png">
+        </div>
+      </div>
+    </ion-card>
+
+  </div>
+
+</div>

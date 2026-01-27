@@ -1,0 +1,17 @@
+ion-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  --padding-top: 60%;
+}
+
+ion-item {
+  --background: #217a43;
+  --border-radius: 12px;
+  --color: white;
+  margin-bottom: 12px;
+}
+
+ion-input {
+  color: white !important;
+}
