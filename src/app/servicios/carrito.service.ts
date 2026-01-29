@@ -8,8 +8,8 @@ import {inject, Injectable} from "@angular/core";
 })
 export class CarritoService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/api/carrito';
-  private ingredienteApiUrl = 'http://localhost:8080/api/ingrediente';
+  private apiUrl = 'https://springboot-smartchef.onrender.com/api/carrito';
+  private ingredienteApiUrl = 'https://springboot-smartchef.onrender.com/api/ingrediente';
 
   getIngredientes(idLista: number): Observable<ListaCompraIngrediente[]> {
     return this.http.get<ListaCompraIngrediente[]>(`${this.apiUrl}/${idLista}/ingredientes`);

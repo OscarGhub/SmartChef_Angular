@@ -8,8 +8,8 @@ import { InventarioItem } from '../modelos/inventario.model';
 })
 export class InventarioService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/api/inventario';
-  private inventarioIngredienteApiUrl = 'http://localhost:8080/api/inventario-ingrediente';
+  private apiUrl = 'https://springboot-smartchef.onrender.com/api/carrito';
+  private inventarioIngredienteApiUrl = 'https://springboot-smartchef.onrender.com/api/carrito';
 
   getInventarioPorUsuario(usuarioId: number): Observable<InventarioItem[]> {
     return this.http.get<InventarioItem[]>(`${this.apiUrl}/usuario/${usuarioId}`);
