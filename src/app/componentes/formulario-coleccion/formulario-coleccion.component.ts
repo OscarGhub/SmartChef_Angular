@@ -4,6 +4,16 @@ import { IonicModule, ModalController } from "@ionic/angular";
 import { ColeccionService } from "../../servicios/coleccion.service";
 import { ColeccionRequest } from "../../modelos/coleccion.request.model";
 import { Coleccion } from "../../modelos/coleccion.model";
+import {
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader, IonInput,
+  IonItem,
+  IonLabel,
+  IonTitle,
+  IonToolbar
+} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-formulario-coleccion',
@@ -12,7 +22,15 @@ import { Coleccion } from "../../modelos/coleccion.model";
   standalone: true,
   imports: [
     FormsModule,
-    IonicModule
+    IonToolbar,
+    IonTitle,
+    IonButtons,
+    IonButton,
+    IonHeader,
+    IonContent,
+    IonLabel,
+    IonItem,
+    IonInput,
   ]
 })
 export class FormularioColeccionComponent {

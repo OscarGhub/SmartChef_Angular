@@ -6,14 +6,18 @@ import { IngredienteService } from '../../servicios/ingrediente.service';
 import { Ingrediente } from '../../modelos/ingrediente.model';
 import { InventarioIngredienteItem } from "../../modelos/inventario-ingrediente.model";
 import {FormularioInventarioComponent} from "../formulario-inventario/formulario-inventario.component";
+import {IonButton, IonContent} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-tarjeta-inventario',
   templateUrl: './tarjeta-inventario.component.html',
   styleUrls: ['./tarjeta-inventario.component.scss'],
   standalone: true,
-  imports: [IonicModule,
-    CommonModule,]
+  imports: [
+    CommonModule,
+    IonButton,
+    IonContent,
+  ]
 })
 
 export class TarjetaInventarioComponent implements OnInit {

@@ -4,6 +4,16 @@ import { FormsModule, NgForm } from "@angular/forms";
 import { CommonModule } from '@angular/common';
 import { Ingrediente } from '../../modelos/ingrediente.model';
 import { InventarioService } from '../../servicios/inventario.service';
+import {
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader, IonInput,
+  IonItem, IonLabel,
+  IonList, IonSelect, IonSelectOption,
+  IonTitle,
+  IonToolbar
+} from "@ionic/angular/standalone";
 
 interface NuevoInventarioItem {
   idIngrediente: number | null;
@@ -16,9 +26,20 @@ interface NuevoInventarioItem {
   styleUrls: ['./formulario-inventario.component.scss'],
   standalone: true,
   imports: [
-    IonicModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    IonButton,
+    IonTitle,
+    IonButtons,
+    IonToolbar,
+    IonHeader,
+    IonContent,
+    IonList,
+    IonItem,
+    IonLabel,
+    IonSelect,
+    IonSelectOption,
+    IonInput
   ]
 })
 export class FormularioInventarioComponent {

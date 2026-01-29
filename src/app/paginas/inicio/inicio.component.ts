@@ -14,6 +14,7 @@ import { InventarioItem } from '../../modelos/inventario.model';
 import { UsuarioService } from '../../servicios/usuario.service';
 import { ModalController } from '@ionic/angular';
 import { FormularioRecetaComponent } from '../../componentes/formulario-receta/formulario-receta.component';
+import {IonContent, IonFooter, IonHeader, IonSelect, IonSelectOption} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-inicio',
@@ -21,12 +22,16 @@ import { FormularioRecetaComponent } from '../../componentes/formulario-receta/f
   styleUrls: ['./inicio.component.scss'],
   standalone: true,
   imports: [
-    IonicModule,
     TarjetaComponent,
     CabeceraComponent,
     FooterComponent,
     SearchBarComponent,
     CommonModule,
+    IonContent,
+    IonHeader,
+    IonSelect,
+    IonSelectOption,
+    IonFooter,
   ]
 })
 export class InicioComponent implements OnInit {

@@ -6,13 +6,14 @@ import { CommonModule } from '@angular/common';
 import { firstValueFrom } from 'rxjs';
 import { AlertService } from '../../servicios-ayuda/alert.service';
 import { UsuarioService } from '../../servicios/usuario.service';
+import {IonAvatar, IonButton, IonCard, IonCardContent, IonInput, IonText} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-tarjeta-perfil',
   templateUrl: './tarjeta-perfil.component.html',
   styleUrls: ['./tarjeta-perfil.component.scss'],
   standalone: true,
-  imports: [IonicModule, FormsModule, CommonModule]
+  imports: [FormsModule, CommonModule, IonAvatar, IonCardContent, IonCard, IonButton, IonText, IonInput]
 })
 export class TarjetaPerfilComponent implements OnInit {
   private router = inject(Router);

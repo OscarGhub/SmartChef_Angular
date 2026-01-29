@@ -13,23 +13,27 @@
     <ion-list class="input-group-inventario">
 
       <ion-item class="custom-select-item">
-        <ion-label position="stacked">Ingrediente a añadir</ion-label>
         <ion-select
+          label="Ingrediente a añadir"
+          labelPlacement="stacked"
           interface="popover"
           placeholder="Selecciona un ingrediente..."
           [(ngModel)]="nuevoItem.idIngrediente"
           name="idIngrediente"
           required
         >
-          <ion-select-option *ngFor="let ingrediente of ingredientesDisponibles" [value]="ingrediente.id">
-            {{ ingrediente.nombre }} ({{ ingrediente.unidadMedida }})
-          </ion-select-option>
+          @for (ingrediente of ingredientesDisponibles; track ingrediente.id) {
+            <ion-select-option [value]="ingrediente.id">
+              {{ ingrediente.nombre }} ({{ ingrediente.unidadMedida }})
+            </ion-select-option>
+          }
         </ion-select>
       </ion-item>
 
       <ion-item class="custom-input-item-inventario">
-        <ion-label position="floating">Cantidad</ion-label>
         <ion-input
+          label="Cantidad"
+          labelPlacement="floating"
           type="number"
           inputmode="decimal"
           [(ngModel)]="nuevoItem.cantidad"

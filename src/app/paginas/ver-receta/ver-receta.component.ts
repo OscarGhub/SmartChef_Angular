@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RecetaService } from '../../servicios/receta.service';
 import { Receta } from '../../modelos/receta.model';
 import {CommonModule} from "@angular/common";
+import {IonContent, IonFooter, IonHeader, IonSpinner} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-ver-receta',
@@ -16,9 +17,12 @@ import {CommonModule} from "@angular/common";
   imports: [
     CabeceraComponent,
     FooterComponent,
-    IonicModule,
     TarjetaRecetaExtendidaComponent,
-    CommonModule
+    CommonModule,
+    IonFooter,
+    IonContent,
+    IonHeader,
+    IonSpinner
   ]
 })
 export class VerRecetaComponent implements OnInit {

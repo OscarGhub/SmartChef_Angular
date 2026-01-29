@@ -4,6 +4,16 @@ import {FormsModule, NgForm} from "@angular/forms";
 import {RecetaService} from "../../servicios/receta.service";
 import {Receta} from "../../modelos/receta.model";
 import {firstValueFrom} from "rxjs";
+import {
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader, IonInput,
+  IonItem,
+  IonLabel, IonTextarea,
+  IonTitle,
+  IonToolbar
+} from "@ionic/angular/standalone";
 
 interface NuevaRecetaForm {
   titulo: string;
@@ -19,8 +29,17 @@ interface NuevaRecetaForm {
   styleUrls: ['./formulario-receta.component.scss'],
   standalone: true,
   imports: [
-    IonicModule,
-    FormsModule
+    FormsModule,
+    IonContent,
+    IonButtons,
+    IonToolbar,
+    IonHeader,
+    IonTitle,
+    IonButton,
+    IonItem,
+    IonLabel,
+    IonInput,
+    IonTextarea
   ]
 })
 export class FormularioRecetaComponent implements OnInit {

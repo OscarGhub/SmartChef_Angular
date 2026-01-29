@@ -7,19 +7,23 @@
 
   <div class="lista-colecciones">
 
-    <ion-card
-      class="coleccion-card"
-      *ngFor="let coleccion of colecciones"
-      (click)="goToColeccion(coleccion.id)">
+    @for (coleccion of colecciones; track coleccion.id) {
+      <ion-card
+        class="coleccion-card"
+        (click)="goToColeccion(coleccion.id)">
 
-      <div class="coleccion-container">
-
-        <div class="coleccion-info">
-          <h2 class="coleccion-titulo">{{ coleccion.nombre }}</h2>
-          <img class="img" src="assets/images/flecha.png">
+        <div class="coleccion-container">
+          <div class="coleccion-info">
+            <h2 class="coleccion-titulo">{{ coleccion.nombre }}</h2>
+            <img class="img" src="assets/images/flecha.png">
+          </div>
         </div>
+      </ion-card>
+    } @empty {
+      <div class="ion-text-center ion-padding">
+        <p style="color: white">Aún no tienes colecciones creadas.</p>
       </div>
-    </ion-card>
+    }
 
   </div>
 

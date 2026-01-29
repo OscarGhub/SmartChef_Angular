@@ -4,6 +4,7 @@ import {FooterComponent} from "../../componentes/footer/footer.component";
 import {IonicModule} from "@ionic/angular";
 import {TarjetaComponent} from "../../componentes/tarjeta_receta/tarjeta.component";
 import {TarjetaCarritoComponent} from "../../componentes/tarjeta-carrito/tarjeta-carrito.component";
+import {IonContent, IonFooter, IonHeader, IonToolbar} from "@ionic/angular/standalone";
 
 @Component({
     selector: 'app-carrito',
@@ -13,8 +14,11 @@ import {TarjetaCarritoComponent} from "../../componentes/tarjeta-carrito/tarjeta
   imports: [
     CabeceraComponent,
     FooterComponent,
-    IonicModule,
-    TarjetaCarritoComponent
+    TarjetaCarritoComponent,
+    IonHeader,
+    IonContent,
+    IonToolbar,
+    IonFooter
   ]
 })
 export class CarritoComponent   {

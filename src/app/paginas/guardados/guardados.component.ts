@@ -9,6 +9,7 @@ import {
   TarjetaRecetaExtendidaComponent
 } from "../../componentes/tarjeta-receta-extendida/tarjeta-receta-extendida.component";
 import {TarjetaComponent} from "../../componentes/tarjeta_receta/tarjeta.component";
+import {IonContent, IonFooter, IonHeader, IonSpinner} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-guardados',
@@ -17,10 +18,13 @@ import {TarjetaComponent} from "../../componentes/tarjeta_receta/tarjeta.compone
   standalone: true,
   imports: [
     CommonModule,
-    IonicModule,
     CabeceraComponent,
     FooterComponent,
-    TarjetaComponent
+    TarjetaComponent,
+    IonHeader,
+    IonContent,
+    IonSpinner,
+    IonFooter
   ]
 })
 export class GuardadosComponent implements OnInit {

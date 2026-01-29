@@ -5,13 +5,14 @@ import { CarritoService } from '../../servicios/carrito.service';
 import { ListaCompraIngrediente } from '../../modelos/carrito.model';
 import { firstValueFrom } from "rxjs";
 import { UsuarioService } from '../../servicios/usuario.service';
+import {IonCard, IonCardContent, IonImg, IonSpinner, IonText} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-tarjeta-carrito',
   templateUrl: './tarjeta-carrito.component.html',
   styleUrls: ['./tarjeta-carrito.component.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule],
+  imports: [CommonModule, IonCardContent, IonSpinner, IonText, IonCard, IonImg],
 })
 export class TarjetaCarritoComponent implements OnInit {
   private carritoService = inject(CarritoService);

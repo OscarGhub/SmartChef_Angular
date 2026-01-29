@@ -2,13 +2,19 @@ import { Component, OnInit, inject } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
+import {IonAvatar, IonButton, IonButtons, IonToolbar} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-cabecera',
   templateUrl: './cabecera.component.html',
   styleUrls: ['./cabecera.component.scss'],
   standalone: true,
-  imports: [IonicModule]
+  imports: [
+    IonAvatar,
+    IonButton,
+    IonButtons,
+    IonToolbar
+  ]
 })
 export class CabeceraComponent implements OnInit {
 

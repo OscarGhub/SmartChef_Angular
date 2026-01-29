@@ -5,14 +5,16 @@
 <ion-content class="ion-padding">
   <div class="center-container">
 
-    <app-tarjeta-receta-extendida
-      *ngIf="receta"
-      [receta]="receta">
-    </app-tarjeta-receta-extendida>
+    @if (receta) {
+      <app-tarjeta-receta-extendida [receta]="receta">
+      </app-tarjeta-receta-extendida>
+    } @else {
+      <div class="loading-message">
+        <ion-spinner name="crescent"></ion-spinner>
+        <p>Cargando receta...</p>
+      </div>
+    }
 
-    <div *ngIf="!receta" class="loading-message">
-      Cargando receta...
-    </div>
   </div>
 </ion-content>
 

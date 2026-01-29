@@ -6,6 +6,7 @@ import { TarjetaInventarioComponent } from "../../componentes/tarjeta-inventario
 import { UsuarioService } from '../../servicios/usuario.service';
 import { Usuario } from '../../modelos/usuario.model';
 import { CommonModule } from '@angular/common';
+import {IonContent, IonFooter, IonHeader, IonToolbar} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-inventario',
@@ -15,9 +16,12 @@ import { CommonModule } from '@angular/common';
   imports: [
     CabeceraComponent,
     FooterComponent,
-    IonicModule,
     TarjetaInventarioComponent,
-    CommonModule
+    CommonModule,
+    IonContent,
+    IonHeader,
+    IonToolbar,
+    IonFooter
   ]
 })
 export class InventarioComponent implements OnInit {

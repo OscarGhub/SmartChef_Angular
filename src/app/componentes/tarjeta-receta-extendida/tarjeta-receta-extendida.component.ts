@@ -6,13 +6,14 @@ import {Receta} from '../../modelos/receta.model';
 import {RecetaService} from '../../servicios/receta.service';
 import {CarritoService} from '../../servicios/carrito.service';
 import {firstValueFrom} from 'rxjs';
+import {IonButton, IonCard, IonIcon} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-tarjeta-receta-extendida',
   templateUrl: './tarjeta-receta-extendida.component.html',
   styleUrls: ['./tarjeta-receta-extendida.component.scss'],
   standalone: true,
-  imports: [IonicModule, RouterModule, CommonModule]
+  imports: [RouterModule, CommonModule, IonCard, IonButton, IonIcon]
 })
 export class TarjetaRecetaExtendidaComponent implements OnInit {
   @Input() receta?: Receta & { enCarrito?: boolean };

@@ -5,13 +5,14 @@ import * as bcrypt from 'bcryptjs';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import {IonButton, IonContent, IonInput, IonItem, IonLabel} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   standalone: true,
-  imports: [IonicModule, FormsModule],
+  imports: [FormsModule, IonContent, IonItem, IonLabel, IonInput, IonButton],
 })
 export class LoginComponent {
   private usuarioService = inject(UsuarioService);

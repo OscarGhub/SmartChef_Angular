@@ -1,31 +1,33 @@
-<ion-card class="receta-card" *ngIf="receta">
-  <div class="receta-container">
+@if (receta) {
+  <ion-card class="receta-card" (click)="goToReceta()">
+    <div class="receta-container">
 
-    <div class="receta-imagen-container">
-      <img
-        class="imagen_receta"
-        [src]="receta.fotoUrl || '../../../assets/images/receta.png'"
-        [alt]="receta.titulo || 'Receta'"
-        (error)="onImageError($event)"
-      />
-    </div>
-
-    <div class="receta-info">
-      <p class="receta-titulo">{{ receta.titulo }}</p>
-
-      <div class="receta-descripcion">
-        <p>{{ receta.descripcion }}</p>
+      <div class="receta-imagen-container">
+        <img
+          class="imagen_receta"
+          [src]="receta.fotoUrl || 'assets/images/receta.png'"
+          [alt]="receta.titulo || 'Receta'"
+          (error)="onImageError($event)"
+        />
       </div>
 
-      <div class="receta-acciones">
-        <ion-button
-          class="boton"
-          (click)="goToReceta(); $event.stopPropagation()"
-        >
-          Ver receta
-        </ion-button>
-      </div>
-    </div>
+      <div class="receta-info">
+        <p class="receta-titulo">{{ receta.titulo }}</p>
 
-  </div>
-</ion-card>
+        <div class="receta-descripcion">
+          <p>{{ receta.descripcion }}</p>
+        </div>
+
+        <div class="receta-acciones">
+          <ion-button
+            class="boton"
+            (click)="goToReceta(); $event.stopPropagation()"
+          >
+            Ver receta
+          </ion-button>
+        </div>
+      </div>
+
+    </div>
+  </ion-card>
+}

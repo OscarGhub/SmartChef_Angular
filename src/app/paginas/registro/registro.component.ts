@@ -6,6 +6,7 @@ import { UsuarioService } from '../../servicios/usuario.service';
 import { IonicModule } from '@ionic/angular';
 import { AlertService } from '../../servicios-ayuda/alert.service';
 import { UsuarioHelper } from '../../servicios-ayuda/usuario.helper';
+import {IonButton, IonContent, IonDatetime, IonInput, IonItem, IonLabel, IonText} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-registro',
@@ -15,7 +16,13 @@ import { UsuarioHelper } from '../../servicios-ayuda/usuario.helper';
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule
+    IonItem,
+    IonInput,
+    IonContent,
+    IonLabel,
+    IonDatetime,
+    IonText,
+    IonButton,
   ]
 })
 export class RegistroComponent {

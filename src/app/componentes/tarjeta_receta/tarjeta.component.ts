@@ -3,13 +3,14 @@ import { IonicModule, AlertController } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 import { Receta } from '../../modelos/receta.model';
 import { CommonModule } from '@angular/common';
+import {IonButton, IonCard} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-tarjeta-receta',
   templateUrl: './tarjeta.component.html',
   styleUrls: ['./tarjeta.component.scss'],
   standalone: true,
-  imports: [IonicModule, RouterModule, CommonModule]
+  imports: [RouterModule, CommonModule, IonCard, IonButton]
 })
 export class TarjetaComponent {
   @Input() receta!: Receta;

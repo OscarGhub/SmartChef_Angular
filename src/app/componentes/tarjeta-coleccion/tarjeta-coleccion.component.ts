@@ -10,6 +10,7 @@ import {UsuarioService} from "../../servicios/usuario.service";
 import {Router, RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
+import {IonButton, IonCard} from "@ionic/angular/standalone";
 // ... (otras importaciones)
 
 @Component({
@@ -17,7 +18,7 @@ import {CommonModule} from "@angular/common";
   templateUrl: 'tarjeta-coleccion.component.html',
   styleUrls: ['./tarjeta-coleccion.component.scss'],
   standalone: true,
-  imports: [IonicModule, RouterModule, CommonModule, FormsModule]
+  imports: [RouterModule, CommonModule, FormsModule, IonCard, IonButton]
 })
 export class TarjetaColeccionComponent implements OnInit {
 

@@ -15,9 +15,12 @@
       okText="Aceptar"
       cancelText="Cancelar"
       (ionChange)="filtrar($event.detail.value)">
-      <ion-select-option *ngFor="let p of preferencias" [value]="p.id">
-        {{ p.nombre }}
-      </ion-select-option>
+
+      @for (p of preferencias; track p.id) {
+        <ion-select-option [value]="p.id">
+          {{ p.nombre }}
+        </ion-select-option>
+      }
     </ion-select>
 
     <app-search-bar (searchChange)="onSearch($event)"></app-search-bar>
@@ -29,13 +32,15 @@
   </div>
 
   <div class="titulo-img">
-    <img src="./assets/images/explorar_logo.png" alt="Explorar">
+    <img src="assets/images/explorar_logo.png" alt="Explorar">
   </div>
 
   <div class="tarjetas">
-    <ng-container *ngFor="let receta of recetasFiltradas">
+    @for (receta of recetasFiltradas; track receta.id) {
       <app-tarjeta-receta [receta]="receta"></app-tarjeta-receta>
-    </ng-container>
+    } @empty {
+      <p style="text-align: center;">No se encontraron recetas con esos filtros.</p>
+    }
   </div>
 
 </ion-content>

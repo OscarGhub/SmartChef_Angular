@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {CabeceraComponent} from "../../componentes/cabecera/cabecera.component";
 import {FooterComponent} from "../../componentes/footer/footer.component";
 import {IonicModule} from "@ionic/angular";
 import {TarjetaCarritoComponent} from "../../componentes/tarjeta-carrito/tarjeta-carrito.component";
 import {TarjetaColeccionComponent} from "../../componentes/tarjeta-coleccion/tarjeta-coleccion.component";
+import {IonContent, IonFooter, IonHeader} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-coleccion',
@@ -13,14 +14,16 @@ import {TarjetaColeccionComponent} from "../../componentes/tarjeta-coleccion/tar
   imports: [
     CabeceraComponent,
     FooterComponent,
-    IonicModule,
-    TarjetaColeccionComponent
+    TarjetaColeccionComponent,
+    IonContent,
+    IonFooter,
+    IonHeader
   ]
 })
-export class ColeccionComponent  implements OnInit {
+export class ColeccionComponent   {
 
   constructor() { }
 
-  ngOnInit() {}
+
 
 }
