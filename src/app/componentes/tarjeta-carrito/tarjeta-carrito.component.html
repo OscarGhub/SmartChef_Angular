@@ -8,7 +8,7 @@
       </div>
     } @else {
 
-      @for (item of listaCompraIngredientes; track item.idLista) {
+      @for (item of listaCompraIngredientes; track item.ingrediente.id) {
         <div class="lista-contenedor">
           <ion-card class="producto-card">
             <div class="producto-container">
