@@ -16,7 +16,7 @@ export class CarritoService {
   }
 
   getIngredientesPorUsuario(idUsuario: number): Observable<ListaCompraIngrediente[]> {
-    return this.http.get<ListaCompraIngrediente[]>(`${this.ingredienteApiUrl}/usuario/${idUsuario}/ingredientes`);
+    return this.http.get<ListaCompraIngrediente[]>(`${this.apiUrl}/usuario/${idUsuario}/ingredientes`);
   }
 
   anadirRecetaAlCarrito(idUsuario: number, idReceta: number): Observable<string> {
