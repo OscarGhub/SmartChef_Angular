@@ -8,8 +8,7 @@ import { InventarioItem } from '../modelos/inventario.model';
 })
 export class InventarioService {
   private http = inject(HttpClient);
-  private apiUrl = 'https://springboot-smartchef.onrender.com/api/carrito';
-  private inventarioIngredienteApiUrl = 'https://springboot-smartchef.onrender.com/api/carrito';
+  private apiUrl = 'https://springboot-smartchef.onrender.com/api/inventario';
 
   getInventarioPorUsuario(usuarioId: number): Observable<InventarioItem[]> {
     return this.http.get<InventarioItem[]>(`${this.apiUrl}/usuario/${usuarioId}`);
@@ -28,12 +27,12 @@ export class InventarioService {
   }
 
   eliminarIngredienteDelInventario(idInventario: number, idIngrediente: number): Observable<void> {
-    const url = `${this.inventarioIngredienteApiUrl}/${idInventario}/${idIngrediente}`;
+    const url = `${this.apiUrl}/${idInventario}/${idIngrediente}`;
     return this.http.delete<void>(url);
   }
 
   getInventarioDetalladoPorUsuario(usuarioId: number): Observable<any[]> {
-    const url = `${this.inventarioIngredienteApiUrl}/usuario/${usuarioId}`;
+    const url = `${this.apiUrl}/usuario/${usuarioId}`;
     return this.http.get<any[]>(url);
   }
 

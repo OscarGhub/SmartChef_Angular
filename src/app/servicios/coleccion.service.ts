@@ -8,7 +8,7 @@ import {ColeccionRequest} from "../modelos/coleccion.request.model";
   providedIn: 'root'
 })
 export class ColeccionService {
-  private apiUrl = 'https://springboot-smartchef.onrender.com/api/carrito';
+  private apiUrl = 'https://springboot-smartchef.onrender.com/api/colecciones';
 
   private http = inject(HttpClient);
 

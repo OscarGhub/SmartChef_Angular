@@ -11,7 +11,7 @@ import { AlertService } from '../servicios-ayuda/alert.service';
 export class UsuarioService {
   private http = inject(HttpClient);
   private alertService = inject(AlertService);
-  private apiUrl = 'https://springboot-smartchef.onrender.com/api/carrito';
+  private apiUrl = 'https://springboot-smartchef.onrender.com/api/usuarios';
   private usuarioKey = 'usuarioActual';
 
   private manejarError<T>(mensaje: string, result: T = {} as T) {

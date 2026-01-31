@@ -10,7 +10,7 @@ import {RecetaRequest} from "../modelos/receta-request.model";
 })
 export class RecetaService {
   private http = inject(HttpClient);
-  private apiUrl = 'https://springboot-smartchef.onrender.com/api/carrito';
+  private apiUrl = 'https://springboot-smartchef.onrender.com/api/receta';
 
   getRecetas(): Observable<Receta[]> {
     return this.http.get<Receta[]>(this.apiUrl);

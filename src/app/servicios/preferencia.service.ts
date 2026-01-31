@@ -12,7 +12,7 @@ export interface Preferencia {
 })
 export class PreferenciaService {
   private http = inject(HttpClient);
-  private apiUrl = 'https://springboot-smartchef.onrender.com/api/carrito';
+  private apiUrl = 'https://springboot-smartchef.onrender.com/api/preferencias';
 
   getPreferencias(): Observable<Preferencia[]> {
     return this.http.get<Preferencia[]>(this.apiUrl);

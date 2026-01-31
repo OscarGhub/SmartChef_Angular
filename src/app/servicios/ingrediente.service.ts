@@ -9,7 +9,7 @@ import {TopIngrediente} from "../modelos/top-ingrediente.model";
 })
 export class IngredienteService {
   private http = inject(HttpClient);
-  private apiUrl = 'https://springboot-smartchef.onrender.com/api/carrito';
+  private apiUrl = 'https://springboot-smartchef.onrender.com/api/ingrediente';
 
   getIngredientes(): Observable<Ingrediente[]> {
     return this.http.get<Ingrediente[]>(`${this.apiUrl}`);

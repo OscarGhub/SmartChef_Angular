@@ -6,7 +6,7 @@ import {RecetaUsoRequest} from "../modelos/receta-uso-request.model";
 
 export class HistorialRecetaService {
   private http = inject(HttpClient);
-  private apiUrl = 'https://springboot-smartchef.onrender.com/api/carrito';
+  private apiUrl = 'https://springboot-smartchef.onrender.com/api/historial';
 
   guardarRecetaDia(dto: RecetaUsoRequest): Observable<RecetaUso> {
     return this.http.post<RecetaUso>(`${this.apiUrl}/receta-dia`, dto);
