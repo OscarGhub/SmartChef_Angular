@@ -15,26 +15,20 @@ export class InventarioService {
   }
 
   crearInventario(usuarioId: number): Observable<any> {
-    const url = `${this.apiUrl}/inventario`;
-    const body = { usuarioId: usuarioId };
-    return this.http.post(url, body);
+    return this.http.post(this.apiUrl, { usuarioId });
   }
 
   agregarIngredienteAlInventario(idInventario: number, idIngrediente: number, cantidad: number): Observable<any> {
-    const url = `${this.apiUrl}/${idInventario}/ingredientes/${idIngrediente}`;
-    const payload = { cantidad };
-
-    return this.http.post<any>(url, payload);
+    const url = `${this.apiUrl}/${idInventario}/ingredientes/${idIngrediente}?cantidad=${cantidad}`;
+    return this.http.post<any>(url, {});
   }
 
   eliminarIngredienteDelInventario(idInventario: number, idIngrediente: number): Observable<void> {
-    const url = `${this.apiUrl}/${idInventario}/${idIngrediente}`;
+    const url = `${this.apiUrl}/${idInventario}/ingredientes/${idIngrediente}`;
     return this.http.delete<void>(url);
   }
 
   getInventarioDetalladoPorUsuario(usuarioId: number): Observable<any[]> {
-    const url = `${this.apiUrl}/usuario/${usuarioId}`;
-    return this.http.get<any[]>(url);
+    return this.http.get<any[]>(`${this.apiUrl}/usuario/${usuarioId}`);
   }
-
 }
