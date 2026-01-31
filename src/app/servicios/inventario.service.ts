@@ -14,9 +14,10 @@ export class InventarioService {
     return this.http.get<InventarioItem[]>(`${this.apiUrl}/usuario/${usuarioId}`);
   }
 
-  crearInventario(usuarioId: number): Observable<InventarioItem> {
-    const url = `${this.apiUrl}/usuario/${usuarioId}`;
-    return this.http.post<InventarioItem>(url, {});
+  crearInventario(usuarioId: number): Observable<any> {
+    const url = `${this.apiUrl}/inventario`;
+    const body = { usuarioId: usuarioId };
+    return this.http.post(url, body);
   }
 
   agregarIngredienteAlInventario(idInventario: number, idIngrediente: number, cantidad: number): Observable<any> {

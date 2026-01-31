@@ -60,7 +60,7 @@ export class CabeceraComponent implements OnInit {
 
   actualizarFotoPerfil(usuarioId: number) {
     const timestamp = new Date().getTime();
-    this.fotoPerfilUrl = `http://localhost:8080/api/usuario/${usuarioId}/foto?t=${timestamp}`;
+    this.fotoPerfilUrl = `https://springboot-smartchef.onrender.com/api/usuario/${usuarioId}/foto?t=${timestamp}`;
   }
 
   goToPerfil() {

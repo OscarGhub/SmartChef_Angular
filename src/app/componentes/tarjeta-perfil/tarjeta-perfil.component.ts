@@ -37,7 +37,7 @@ export class TarjetaPerfilComponent implements OnInit {
   }
 
   protected getFotoUrl(usuarioId: number): string {
-    return `http://localhost:8080/api/usuario/${usuarioId}/foto?t=${new Date().getTime()}`;
+    return `https://springboot-smartchef.onrender.com/api/usuario/${usuarioId}/foto?t=${new Date().getTime()}`;
   }
 
   toggleEditar(campo: 'fechaNacimiento' | 'correoElectronico') {
