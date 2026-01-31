@@ -1,8 +1,12 @@
 import {Observable} from "rxjs";
 import {RecetaUso} from "../modelos/receta-uso.model";
-import {inject} from "@angular/core";
+import {inject, Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {RecetaUsoRequest} from "../modelos/receta-uso-request.model";
+
+@Injectable({
+  providedIn: 'root'
+})
 
 export class HistorialRecetaService {
   private http = inject(HttpClient);
