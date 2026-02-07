@@ -21,7 +21,7 @@ export class CabeceraComponent implements OnInit {
   private router = inject(Router);
   private usuarioService = inject(UsuarioService);
 
-  fotoPerfilUrl: string = '../../../assets/images/perfil.png';
+  fotoPerfilUrl: string = 'assets/images/perfil.png';
   correoValido: boolean = false;
 
   constructor() { }
@@ -34,7 +34,7 @@ export class CabeceraComponent implements OnInit {
         next: usuario => {
           if (usuario && usuario.id) {
             this.correoValido = true;
-            this.actualizarFotoPerfil(usuario.id);
+            this.gestionarFotoPerfil(usuario);
           } else {
             this.resetearSesion();
           }
@@ -43,6 +43,17 @@ export class CabeceraComponent implements OnInit {
       });
     } else {
       this.resetearSesion();
+    }
+  }
+
+  private gestionarFotoPerfil(usuario: any) {
+    const timestamp = new Date().getTime();
+
+    if (usuario.fotoRuta) {
+      this.fotoPerfilUrl = `https://springboot-smartchef.onrender.com/uploads/${usuario.fotoRuta}?t=${timestamp}`;
+    }
+    else {
+      this.fotoPerfilUrl = `https://springboot-smartchef.onrender.com/api/usuario/${usuario.id}/foto?t=${timestamp}`;
     }
   }
 
@@ -56,11 +67,6 @@ export class CabeceraComponent implements OnInit {
   validarCorreo(correo: string): boolean {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(correo);
-  }
-
-  actualizarFotoPerfil(usuarioId: number) {
-    const timestamp = new Date().getTime();
-    this.fotoPerfilUrl = `https://springboot-smartchef.onrender.com/api/usuario/${usuarioId}/foto?t=${timestamp}`;
   }
 
   goToPerfil() {
