@@ -4,7 +4,7 @@
 
       <div class="avatar-wrapper" style="position: relative; display: inline-block;">
         <ion-avatar class="perfil-avatar">
-          <img [src]="usuario.fotoUrl" alt="Avatar del usuario" (error)="onImageError($event)" />
+          <img [src]="usuario.fotoUrl" alt="Avatar del usuario" (error)="onImageError($event)" (click)="cambiarFoto()" />
         </ion-avatar>
 
         <ion-button
@@ -12,12 +12,12 @@
           fill="solid"
           color="secondary"
           class="cambiar-foto-btn"
-          (click)="seleccionarArchivo()"
+          (click)="cambiarFoto()"
           style="position: absolute; bottom: 0; right: 0; border-radius: 50%; padding: 4px;"
         >
           <img class="img_boton" src="assets/images/editar_icono.png" alt="Imagen Editar">
         </ion-button>
-        <input type="file" accept="image/*" #fileInput hidden (change)="cambiarFoto($event)" />
+
       </div>
 
       <ion-text>
@@ -39,6 +39,20 @@
             }
           </p>
         </ion-text>
+
+        <img
+          src="assets/images/lapiz.webp"
+          class="editar-icono"
+          alt="Editar"
+          (click)="toggleEditar('fechaNacimiento')"
+          style="cursor: pointer; width: 20px; margin-left: 10px;"
+        />
+
+        @if (editarFecha) {
+          <ion-button size="small" (click)="guardarCampo('fechaNacimiento')">
+            Guardar
+          </ion-button>
+        }
       </div>
 
       <div class="perfil-datos">

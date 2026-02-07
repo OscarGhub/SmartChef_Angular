@@ -7,6 +7,7 @@ import { firstValueFrom } from 'rxjs';
 import { AlertService } from '../../servicios-ayuda/alert.service';
 import { UsuarioService } from '../../servicios/usuario.service';
 import {IonAvatar, IonButton, IonCard, IonCardContent, IonInput, IonText} from "@ionic/angular/standalone";
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
   selector: 'app-tarjeta-perfil',
@@ -86,38 +87,49 @@ export class TarjetaPerfilComponent implements OnInit {
     this.fileInput.nativeElement.click();
   }
 
-  async cambiarFoto(event: Event) {
+  onImageError($event: ErrorEvent) {
+    this.usuario.fotoUrl = '../../../assets/images/perfil.png';
+  }
+
+  async cambiarFoto() {
     if (!this.usuario?.id) return;
 
-    const input = event.target as HTMLInputElement;
-    if (!input.files || input.files.length === 0) return;
-
-    const archivo = input.files[0];
-    const formData = new FormData();
-    formData.append('foto', archivo);
-
     try {
+      const image = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: false,
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Prompt,
+        promptLabelHeader: 'Cambiar foto',
+        promptLabelPhoto: 'Elegir de la galería',
+        promptLabelPicture: 'Hacer una foto'
+      });
+
+      const response = await fetch(image.webPath!);
+      const blob = await response.blob();
+
+      const formData = new FormData();
+      formData.append('foto', blob, `perfil_${this.usuario.id}.jpg`);
+
       const usuarioActualizado = await firstValueFrom(
         this.usuarioService.actualizarFoto(this.usuario.id, formData)
       );
 
       this.usuario = {
+        ...this.usuario,
         ...usuarioActualizado,
         fotoUrl: this.getFotoUrl(this.usuario.id)
       };
 
       localStorage.setItem('usuario', JSON.stringify(this.usuario));
       await this.alertService.mostrarAlerta('Éxito', 'Foto actualizada correctamente');
+
     } catch (error) {
       console.error('Error al actualizar foto:', error);
-      await this.alertService.mostrarAlerta('Error', 'No se pudo actualizar la foto.');
-    } finally {
-      input.value = '';
+      if (error !== 'User cancelled photos app') {
+        await this.alertService.mostrarAlerta('Error', 'No se pudo actualizar la foto.');
+      }
     }
-  }
-
-  onImageError($event: ErrorEvent) {
-    this.usuario.fotoUrl = '../../../assets/images/perfil.png';
   }
 
 }
