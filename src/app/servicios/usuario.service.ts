@@ -13,6 +13,7 @@ export class UsuarioService {
   private alertService = inject(AlertService);
   private apiUrl = 'https://springboot-smartchef.onrender.com/api/usuarios';
   private usuarioKey = 'usuarioActual';
+  private readonly baseServerUrl = 'https://springboot-smartchef.onrender.com';
 
   private manejarError<T>(mensaje: string, result: T = {} as T) {
     return (error: any): Observable<T> => {
@@ -85,5 +86,13 @@ export class UsuarioService {
     if (usuarioActual?.id !== usuario.id) {
       localStorage.setItem(this.usuarioKey, JSON.stringify(usuario));
     }
+  }
+
+  getFotoUrl(fotoUrl: string | null): string {
+    if (!fotoUrl) return 'assets/images/perfil.png';
+
+    if (fotoUrl.startsWith('http')) return fotoUrl;
+
+    return `${this.baseServerUrl}${fotoUrl}?t=${new Date().getTime()}`;
   }
 }

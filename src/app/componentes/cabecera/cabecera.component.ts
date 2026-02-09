@@ -1,7 +1,6 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
-import { UsuarioService } from 'src/app/servicios/usuario.service';
+import {Component, OnInit, inject} from '@angular/core';
+import {Router} from '@angular/router';
+import {UsuarioService} from 'src/app/servicios/usuario.service';
 import {IonAvatar, IonButton, IonButtons, IonToolbar} from "@ionic/angular/standalone";
 
 @Component({
@@ -24,7 +23,8 @@ export class CabeceraComponent implements OnInit {
   fotoPerfilUrl: string = 'assets/images/perfil.png';
   correoValido: boolean = false;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     const correo = localStorage.getItem('correoElectronico');
@@ -47,20 +47,13 @@ export class CabeceraComponent implements OnInit {
   }
 
   private gestionarFotoPerfil(usuario: any) {
-    const timestamp = new Date().getTime();
-
-    if (usuario.fotoRuta) {
-      this.fotoPerfilUrl = `https://springboot-smartchef.onrender.com/uploads/${usuario.fotoRuta}?t=${timestamp}`;
-    }
-    else {
-      this.fotoPerfilUrl = `https://springboot-smartchef.onrender.com/api/usuario/${usuario.id}/foto?t=${timestamp}`;
-    }
+    this.fotoPerfilUrl = this.usuarioService.getFotoUrl(usuario.fotoUrl ?? null);
   }
 
   private resetearSesion() {
-    console.warn('Correo inválido o usuario no encontrado. Redirigiendo a login.');
     this.correoValido = false;
     localStorage.removeItem('correoElectronico');
+    localStorage.removeItem('usuarioActual');
     this.router.navigate(['/login']);
   }
 
@@ -73,12 +66,11 @@ export class CabeceraComponent implements OnInit {
     if (this.correoValido) {
       this.router.navigate(['/perfil']);
     } else {
-      console.warn('No se puede ir al perfil: usuario no válido');
       this.router.navigate(['/login']);
     }
   }
 
   onImageError() {
-    this.fotoPerfilUrl = '../../../assets/images/perfil.png';
+    this.fotoPerfilUrl = 'assets/images/perfil.png';
   }
 }

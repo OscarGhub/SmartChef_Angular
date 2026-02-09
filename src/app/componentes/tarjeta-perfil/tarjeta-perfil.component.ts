@@ -1,13 +1,12 @@
-import { Component, OnInit, inject, ViewChild, ElementRef } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { firstValueFrom } from 'rxjs';
-import { AlertService } from '../../servicios-ayuda/alert.service';
-import { UsuarioService } from '../../servicios/usuario.service';
+import {Component, OnInit, inject, ViewChild, ElementRef} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {Router} from '@angular/router';
+import {CommonModule} from '@angular/common';
+import {firstValueFrom} from 'rxjs';
+import {AlertService} from '../../servicios-ayuda/alert.service';
+import {UsuarioService} from '../../servicios/usuario.service';
 import {IonAvatar, IonButton, IonCard, IonCardContent, IonInput, IonText} from "@ionic/angular/standalone";
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import {Camera, CameraResultType, CameraSource} from '@capacitor/camera';
 
 @Component({
   selector: 'app-tarjeta-perfil',
@@ -28,17 +27,13 @@ export class TarjetaPerfilComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   ngOnInit() {
-    const data = localStorage.getItem('usuario');
+    const data = localStorage.getItem('usuarioActual');
     if (data) {
       this.usuario = JSON.parse(data);
-      if (this.usuario?.id && this.usuario.fotoUrl) {
-        this.usuario.fotoUrl = this.getFotoUrl(this.usuario.id);
+      if (this.usuario) {
+        this.usuario.fotoUrl = this.usuarioService.getFotoUrl(this.usuario.fotoUrl ?? null);
       }
     }
-  }
-
-  protected getFotoUrl(usuarioId: number): string {
-    return `https://springboot-smartchef.onrender.com/api/usuario/${usuarioId}/foto?t=${new Date().getTime()}`;
   }
 
   toggleEditar(campo: 'fechaNacimiento' | 'correoElectronico') {
@@ -62,33 +57,29 @@ export class TarjetaPerfilComponent implements OnInit {
         );
         this.editarEmail = false;
       } else if (campo === 'fechaNacimiento') {
-        const payload = { fecha_nacimiento: this.usuario.fechaNacimiento };
+        const payload = {fechaNacimiento: this.usuario.fechaNacimiento};
         usuarioActualizado = await firstValueFrom(
           this.usuarioService.actualizarUsuario(this.usuario.id, payload)
         );
         this.editarFecha = false;
       }
 
-      this.usuario = {
-        ...usuarioActualizado,
-        fotoUrl: this.usuario.id ? this.getFotoUrl(this.usuario.id) : this.usuario.fotoUrl
-      };
-
-      localStorage.setItem('usuario', JSON.stringify(this.usuario));
-
-      await this.alertService.mostrarAlerta('Éxito', 'Datos actualizados correctamente');
+      if (usuarioActualizado) {
+        this.usuario = {
+          ...usuarioActualizado,
+          fotoUrl: this.usuarioService.getFotoUrl(usuarioActualizado.fotoUrl ?? null)
+        };
+        localStorage.setItem('usuarioActual', JSON.stringify(this.usuario));
+        await this.alertService.mostrarAlerta('Éxito', 'Datos actualizados correctamente');
+      }
     } catch (error) {
       console.error('Error al actualizar usuario:', error);
-      await this.alertService.mostrarAlerta('Error', 'No se pudo actualizar. Intenta más tarde.');
+      await this.alertService.mostrarAlerta('Error', 'No se pudo actualizar.');
     }
   }
 
-  seleccionarArchivo() {
-    this.fileInput.nativeElement.click();
-  }
-
-  onImageError($event: ErrorEvent) {
-    this.usuario.fotoUrl = '../../../assets/images/perfil.png';
+  onImageError($event: any) {
+    this.usuario.fotoUrl = 'assets/images/perfil.png';
   }
 
   async cambiarFoto() {
@@ -97,12 +88,11 @@ export class TarjetaPerfilComponent implements OnInit {
     try {
       const image = await Camera.getPhoto({
         quality: 90,
-        allowEditing: false,
         resultType: CameraResultType.Uri,
         source: CameraSource.Prompt,
         promptLabelHeader: 'Cambiar foto',
-        promptLabelPhoto: 'Elegir de la galería',
-        promptLabelPicture: 'Hacer una foto'
+        promptLabelPhoto: 'Galería',
+        promptLabelPicture: 'Cámara'
       });
 
       const response = await fetch(image.webPath!);
@@ -115,21 +105,21 @@ export class TarjetaPerfilComponent implements OnInit {
         this.usuarioService.actualizarFoto(this.usuario.id, formData)
       );
 
-      this.usuario = {
-        ...this.usuario,
-        ...usuarioActualizado,
-        fotoUrl: this.getFotoUrl(this.usuario.id)
-      };
+      if (usuarioActualizado) {
+        this.usuario = {
+          ...this.usuario,
+          ...usuarioActualizado,
+          fotoUrl: this.usuarioService.getFotoUrl(usuarioActualizado.fotoUrl ?? null)
+        };
 
-      localStorage.setItem('usuario', JSON.stringify(this.usuario));
-      await this.alertService.mostrarAlerta('Éxito', 'Foto actualizada correctamente');
+        localStorage.setItem('usuarioActual', JSON.stringify(this.usuario));
+        await this.alertService.mostrarAlerta('Éxito', 'Foto actualizada correctamente');
+      }
 
-    } catch (error) {
-      console.error('Error al actualizar foto:', error);
-      if (error !== 'User cancelled photos app') {
-        await this.alertService.mostrarAlerta('Error', 'No se pudo actualizar la foto.');
+    } catch (error: any) {
+      if (error.message !== 'User cancelled photos app') {
+        console.error('Error al actualizar foto:', error);
       }
     }
   }
-
 }
