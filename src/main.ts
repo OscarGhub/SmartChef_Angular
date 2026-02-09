@@ -8,12 +8,14 @@ import { IonicModule } from '@ionic/angular';
 import { routes } from './app/app.routes';
 import { AppComponent, fadeAnimation } from './app/app.component';
 
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
+
+defineCustomElements(window);
+
 bootstrapApplication(AppComponent, {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-
     importProvidersFrom(IonicModule.forRoot({})),
-
     provideIonicAngular({
       navAnimation: fadeAnimation
     }),
